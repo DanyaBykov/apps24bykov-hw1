@@ -11,8 +11,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
+        int numb = -273;
         for (double temp : temperatureSeries) {
-            if (temp < -273) {
+            if (temp < numb) {
                 throw new InputMismatchException();
             }
         }
@@ -51,7 +52,7 @@ public class TemperatureSeriesAnalysis {
         double avg = this.average();
         for (double temp : this.temperatureSeries) {
             if (temp != Double.POSITIVE_INFINITY) {
-                sum += Math.pow(temp - avg, 2);
+                sum += (temp - avg)*(temp - avg);
             }
         }
         return Math.sqrt(sum / this.getLength()-1);
@@ -66,7 +67,7 @@ public class TemperatureSeriesAnalysis {
             if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
-            if (temp < min){
+            if (temp < min) {
                 min = temp;
             }
         }
@@ -107,13 +108,13 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsLessThen(double tempValue) {
-        int temp_c = 0;
+        int tempC = 0;
         for (double temp : this.temperatureSeries) {
             if (temp < tempValue) {
-                temp_c++;
+                tempC++;
             }
         }
-        double[] min = new double[temp_c];
+        double[] min = new double[tempC];
         int c = 0;
         for (double temp : this.temperatureSeries) {
             if (temp < tempValue) {
@@ -125,22 +126,22 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsGreaterThen(double tempValue) {
-        int temp_c = 0;
+        int tempC = 0;
         for (double temp : this.temperatureSeries) {
             if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
             if (temp >= tempValue) {
-                temp_c++;
+                tempC++;
             }
         }
-        double[] max = new double[temp_c];
+        double[] max = new double[tempC];
         int c = 0;
         for (double temp : this.temperatureSeries) {
             if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
-            if (temp>=tempValue){
+            if (temp >= tempValue) {
                 max[c] = temp;
                 c++;
             }
@@ -149,22 +150,22 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsInRange(double lowerBound, double upperBound) {
-        int temp_c = 0;
+        int tempC = 0;
         for (double temp : this.temperatureSeries) {
             if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
-            if (temp>=lowerBound && temp<=upperBound) {
-                temp_c++;
+            if (temp >= lowerBound && temp <= upperBound) {
+                tempC++;
             }
         }
-        double[] range = new double[temp_c];
+        double[] range = new double[tempC];
         int c = 0;
         for (double temp : this.temperatureSeries) {
             if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
-            if (temp>=lowerBound && temp<=upperBound) {
+            if (temp >= lowerBound && temp <= upperBound) {
                 range[c] = temp;
                 c++;
             }
