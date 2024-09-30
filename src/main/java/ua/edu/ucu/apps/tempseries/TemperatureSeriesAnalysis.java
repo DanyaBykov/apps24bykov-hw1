@@ -35,8 +35,8 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException();
         }
         double sum = 0;
-        for (double temp : this.temperatureSeries){
-            if (temp != Double.POSITIVE_INFINITY){
+        for (double temp : this.temperatureSeries) {
+            if (temp != Double.POSITIVE_INFINITY) {
                 sum += temp;
             }
         }
@@ -49,8 +49,8 @@ public class TemperatureSeriesAnalysis {
         }
         double sum = 0;
         double avg = this.average();
-        for (double temp : this.temperatureSeries){
-            if (temp != Double.POSITIVE_INFINITY){
+        for (double temp : this.temperatureSeries) {
+            if (temp != Double.POSITIVE_INFINITY) {
                 sum += Math.pow(temp - avg, 2);
             }
         }
@@ -62,11 +62,11 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException();
         }
         double min = this.temperatureSeries[0];
-        for (double temp : this.temperatureSeries){
-            if (temp == Double.POSITIVE_INFINITY){
+        for (double temp : this.temperatureSeries) {
+            if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
-            if (temp<min){
+            if (temp < min){
                 min = temp;
             }
         }
@@ -78,11 +78,11 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException();
         }
         double max = 0;
-        for (double temp : this.temperatureSeries){
-            if (temp == Double.POSITIVE_INFINITY){
+        for (double temp : this.temperatureSeries) {
+            if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
-            if (temp>max){
+            if (temp > max) {
                 max = temp;
             }
         }
@@ -95,11 +95,11 @@ public class TemperatureSeriesAnalysis {
 
     public double findTempClosestToValue(double tempValue) {
         double close = this.temperatureSeries[0];
-        for (double temp : this.temperatureSeries){
-            if (temp == Double.POSITIVE_INFINITY){
+        for (double temp : this.temperatureSeries) {
+            if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
-            if (Math.abs(temp-tempValue) < close){
+            if (Math.abs(temp-tempValue) < close) {
                 close = temp;
             }
         }
@@ -108,15 +108,15 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsLessThen(double tempValue) {
         int temp_c = 0;
-        for (double temp : this.temperatureSeries){
-            if (temp<tempValue){
+        for (double temp : this.temperatureSeries) {
+            if (temp < tempValue) {
                 temp_c++;
             }
         }
         double[] min = new double[temp_c];
-        int c =0;
-        for (double temp : this.temperatureSeries){
-            if (temp<tempValue){
+        int c = 0;
+        for (double temp : this.temperatureSeries) {
+            if (temp < tempValue) {
                 min[c] = temp;
                 c++;
             }
@@ -126,18 +126,18 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsGreaterThen(double tempValue) {
         int temp_c = 0;
-        for (double temp : this.temperatureSeries){
-            if (temp == Double.POSITIVE_INFINITY){
+        for (double temp : this.temperatureSeries) {
+            if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
-            if (temp>=tempValue){
+            if (temp >= tempValue) {
                 temp_c++;
             }
         }
         double[] max = new double[temp_c];
-        int c =0;
-        for (double temp : this.temperatureSeries){
-            if (temp == Double.POSITIVE_INFINITY){
+        int c = 0;
+        for (double temp : this.temperatureSeries) {
+            if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
             if (temp>=tempValue){
@@ -150,21 +150,21 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsInRange(double lowerBound, double upperBound) {
         int temp_c = 0;
-        for (double temp : this.temperatureSeries){
-            if (temp == Double.POSITIVE_INFINITY){
+        for (double temp : this.temperatureSeries) {
+            if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
-            if (temp>=lowerBound && temp<=upperBound){
+            if (temp>=lowerBound && temp<=upperBound) {
                 temp_c++;
             }
         }
         double[] range = new double[temp_c];
-        int c =0;
-        for (double temp : this.temperatureSeries){
-            if (temp == Double.POSITIVE_INFINITY){
+        int c = 0;
+        for (double temp : this.temperatureSeries) {
+            if (temp == Double.POSITIVE_INFINITY) {
                 continue;
             }
-            if (temp>=lowerBound && temp<=upperBound){
+            if (temp>=lowerBound && temp<=upperBound) {
                 range[c] = temp;
                 c++;
             }
@@ -186,7 +186,9 @@ public class TemperatureSeriesAnalysis {
         if (this.temperatureSeries.length == 0) {
             throw new IllegalArgumentException();
         }
-        return new TempSummaryStatistics(this.average(), this.deviation(), this.min(), this.max());
+        return new TempSummaryStatistics(
+            this.average(), this.deviation(), 
+            this.min(), this.max());
     }
 
     public int addTemps(double... temps) {
@@ -200,10 +202,12 @@ public class TemperatureSeriesAnalysis {
         if (newLength > this.temperatureSeries.length) {
             double[] newSeries = new double[currentLength * 2];
             Arrays.fill(newSeries, inf);
-            System.arraycopy(this.temperatureSeries, 0, newSeries, 0, this.temperatureSeries.length);
+            System.arraycopy(this.temperatureSeries, 0, newSeries,
+             0, this.temperatureSeries.length);
             this.temperatureSeries = newSeries;
         }
-        System.arraycopy(temps, 0, this.temperatureSeries, currentLength, temps.length);
+        System.arraycopy(temps, 0, this.temperatureSeries,
+         currentLength, temps.length);
         return newLength;
     }
 }
