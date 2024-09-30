@@ -1,5 +1,6 @@
 package ua.edu.ucu.apps.tempseries;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
@@ -14,10 +15,11 @@ public class TemperatureSeriesAnalysis {
         int numb = -273;
         for (double temp : temperatureSeries) {
             if (temp < numb) {
+                this.temperatureSeries = new double[0];
                 throw new InputMismatchException();
             }
         }
-        this.temperatureSeries = temperatureSeries;
+        this.temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
     }
 
     public int getLength() {
@@ -180,7 +182,7 @@ public class TemperatureSeriesAnalysis {
     public double[] sortTemps() {
         double[] sorted = this.temperatureSeries;
         Arrays.sort(sorted);
-        return sorted;
+        return Arrays.copyOf(sorted, this.getLength());
     }
 
     public TempSummaryStatistics summaryStatistics() {
