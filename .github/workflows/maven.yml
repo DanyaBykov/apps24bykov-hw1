@@ -41,3 +41,8 @@ jobs:
     - uses: jwgmeligmeyling/spotbugs-github-action@master
       with:
         path: '**/spotbugsXml.xml'
+
+permissions:
+  contents: write
+  packages: write
+  checks: write
