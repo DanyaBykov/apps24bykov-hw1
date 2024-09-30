@@ -1,7 +1,8 @@
 package ua.edu.ucu.tempseries;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+
 import ua.edu.ucu.apps.tempseries.TemperatureSeriesAnalysis;
 
 public class TemperatureSeriesAnalysisTest {
@@ -14,6 +15,14 @@ public class TemperatureSeriesAnalysisTest {
 
         double actualResult = seriesAnalysis.average();
         assertEquals(expResult, actualResult, 0.00001);
+        
+        // TemperatureSeriesAnalysis seriesAnalysis2 = new TemperatureSeriesAnalysis(new double[]{3.0, -5.0, 1.0, 5.0});
+        // seriesAnalysis2.addTemps(1.0);
+        // seriesAnalysis2.addTemps(2.0);
+        // System.out.println(seriesAnalysis2.findTempClosestToZero());
+        // System.out.println(seriesAnalysis2.getLength());
+        // System.out.println(seriesAnalysis2.average());
+        // System.out.println(Arrays.toString(seriesAnalysis2.sortTemps()));
     }
 
 //    @Test
