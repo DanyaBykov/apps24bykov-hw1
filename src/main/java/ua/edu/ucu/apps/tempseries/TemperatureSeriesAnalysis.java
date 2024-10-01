@@ -14,7 +14,6 @@ public class TemperatureSeriesAnalysis {
         int numb = -273;
         for (double temp : temperatureSeries) {
             if (temp < numb) {
-                this.temperatureSeries = new double[0];
                 throw new InputMismatchException();
             }
         }
