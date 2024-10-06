@@ -5,15 +5,15 @@ import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
     private double[] temperatureSeries;
+    private static final double MIN_TEMPERATURE = -273;
 
     public TemperatureSeriesAnalysis() {
         temperatureSeries = new double[0];
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        int numb = -273;
         for (double temp : temperatureSeries) {
-            if (temp < numb) {
+            if (temp < MIN_TEMPERATURE) {
                 throw new InputMismatchException();
             }
         }
